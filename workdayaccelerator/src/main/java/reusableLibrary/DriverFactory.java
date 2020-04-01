@@ -15,7 +15,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Properties;
@@ -58,7 +58,6 @@ import utilities.ExcelDataInputManager;
 import utilities.ExcelReportManager;
 import utilities.ExtentManager;
 import utilities.LoggerUtility;
-import utilities.SSNGenerator;
 
 public class DriverFactory extends ExtentManager {
 
@@ -76,7 +75,6 @@ public class DriverFactory extends ExtentManager {
 	protected String baseURL = "";
 	protected Random rand = new Random();
 	protected Faker fk = new Faker(new Locale("en-US"));
-	protected SSNGenerator ssGen = new SSNGenerator();
 	private int proxyType = ProxyType.AUTODETECT.ordinal();
 	
 
