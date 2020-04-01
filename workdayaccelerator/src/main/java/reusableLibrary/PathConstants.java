@@ -90,7 +90,7 @@ public final class PathConstants {
 	
 	/** Report related data	 */
 	public static final String TESTREPORT_SHEETNAME = "TestSuite Report";
-	public static final String TESTREPORT_HEADERTITLE = "DOW - Automated Test Execution Report";
+	public static final String TESTREPORT_HEADERTITLE = "Automated Test Execution Report";
 	public static final String TESTREPORT_FILELINKCOL ="Click to view Result";
 	
 	public static final String TESTREPORT_FIRCOL = "Name of the Executed Test Set";
