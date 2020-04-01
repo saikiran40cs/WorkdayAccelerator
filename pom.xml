@@ -1,15 +1,55 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.saikiran40cs</groupId>
-  <artifactId>workdayaccelerator</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>workdayaccelerator</name>
-  <description>This is to accelerate workday tests</description>
-  <packaging>jar</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.saikiran40cs</groupId>
+	<artifactId>workdayaccelerator</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>workdayaccelerator</name>
+	<description>This is to accelerate workday tests</description>
+	<packaging>jar</packaging>
+
+	<developers>
+		<developer>
+			<name>Sai Kiran Nataraja</name>
+			<email>kiran.linux@gmail.com</email>
+			<organization>Sai Kiran</organization>
+			<organizationUrl>https://github.com/saikiran40cs</organizationUrl>
+			<timezone>UTC+05:30</timezone>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/saikiran40cs/WorkdayAccelerator.git
+		</connection>
+		<developerConnection>scm:git:git@github.com:saikiran40cs/WorkdayAccelerator.git
+		</developerConnection>
+		<url>https://github.com/saikiran40cs/WorkdayAccelerator</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
+			</url>
+		</repository>
+	</distributionManagement>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/saikiran40cs/WorkdayAccelerator/issues</url>
+	</issueManagement>
+
 
 	<properties>
 		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>Cp1252</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>Cp1252
+		</project.reporting.outputEncoding>
 		<selenium.version>3.141.59</selenium.version>
 		<testng.version>6.14.3</testng.version>
 		<java.version>11</java.version>
@@ -26,10 +66,21 @@
 		<commons-io.version>2.6</commons-io.version>
 		<maven-invoker.version>3.0.1</maven-invoker.version>
 		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+
+		<version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>
+		<version.nexus-staging-maven-plugin>1.6.7
+		</version.nexus-staging-maven-plugin>
+		<version.maven-release-plugin>2.5.3</version.maven-release-plugin>
+		<version.maven-scm-provider-gitexe>1.9.5</version.maven-scm-provider-gitexe>
+
+		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
+		<version.maven-javadoc-plugin>2.10.4</version.maven-javadoc-plugin>
+
+		<version.maven-gpg-plugin>1.6</version.maven-gpg-plugin>
 	</properties>
 
 	<dependencies>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -154,8 +205,112 @@
 					<release>${java.version}</release>
 				</configuration>
 			</plugin>
-		
+			<!-- Maven Source code online for Java -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${version.maven-source-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${version.maven-javadoc-plugin}</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadoc</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Maven Deploy code online for Java -->
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${version.maven-deploy-plugin}</version>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>${version.nexus-staging-maven-plugin}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${version.maven-release-plugin}</version>
+				<configuration>
+					<localCheckout>true</localCheckout>
+					<pushChanges>false</pushChanges>
+					<mavenExecutorId>forked-path</mavenExecutorId>
+					<arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-gitexe</artifactId>
+						<version>${version.maven-scm-provider-gitexe}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
 		</plugins>
 	</build>
-	
+
+	<profiles>
+		<!-- GPG Signature on release -->
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${version.maven-gpg-plugin}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
