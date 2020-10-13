@@ -54,7 +54,7 @@
 		<testng.version>6.14.3</testng.version>
 		<java.version>11</java.version>
 		<extentreports.version>3.1.5</extentreports.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<poi.version>4.0.1</poi.version>
 		<faker.version>0.16</faker.version>
 		<webdrivermanager.version>3.4.0</webdrivermanager.version>
